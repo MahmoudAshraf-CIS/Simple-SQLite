@@ -4,20 +4,20 @@ Simple SQLite was created following the [Tutorial](https://www.youtube.com/watch
 
 ```bash
 [unity project folder]
-|─[Assets]
-[Plugins]
-----------└─[SQLite]
----------------Mono.Data.Sqlite.dll
----------------└─[x64]
--------------------sqlite3.dll
--------------------sqlite3.def
----------------└─[x86]
--------------------sqlite3.dll
--------------------sqlite3.def
+-└─[Assets]
+    └─[Plugins]
+        └─[SQLite]
+            Mono.Data.Sqlite.dll
+            └─[x64]
+                sqlite3.dll
+                sqlite3.def
+            └─[x86]
+                sqlite3.dll
+                sqlite3.def
 ```
 
 i tried to follow another guide [here](https://javadocmd.com/blog/how-to-set-up-sqlite-for-unity/) but it's a bit outdated i think so i droped it
 
 
-only tested on the editor though 
+only tested on the editor though
 
