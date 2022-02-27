@@ -21,3 +21,9 @@ i tried to follow another guide [here](https://javadocmd.com/blog/how-to-set-up-
 
 only tested on the editor though
 
+the db is located at
+```bash
+C:\Users\<user name>\AppData\LocalLow\DefaultCompany\Simple-SQLite
+```
+
+to view the DB you can use SQLCipher `just install SQLite`
