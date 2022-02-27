@@ -26,4 +26,4 @@ the db is located at
 C:\Users\<user name>\AppData\LocalLow\DefaultCompany\Simple-SQLite
 ```
 
-to view the DB you can use SQLCipher `just install SQLite`
+to view the DB you can use SQLCipher, just [download/install](https://www.sqlite.org/index.html) SQLite
