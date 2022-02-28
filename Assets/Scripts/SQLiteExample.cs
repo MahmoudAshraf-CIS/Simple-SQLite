@@ -6,20 +6,15 @@ using Mono.Data.Sqlite;
 using System.Data;
 using System.Linq;
 
-public class student
-{
-    public int i;
-    public string name;
-
-}
+ 
 public class SQLiteExample : MonoBehaviour
 {
     // Start is called before the first frame update
     private string dbName;
-    public student ss;
+    
     public Time t;
     public int[] arr;
-
+ 
     void Start()
     {
         dbName = "URI=file:" + Application.persistentDataPath + "/Inventory.db";
@@ -93,7 +88,6 @@ public class SQLiteExample : MonoBehaviour
     }
 
     
-
     private void AddUser(string userName, string password, string firstName, string lastName)
     {
         using (var connection = new SqliteConnection(dbName))
