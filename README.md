@@ -27,3 +27,8 @@ C:\Users\<user name>\AppData\LocalLow\DefaultCompany\Simple-SQLite
 ```
 
 to view the DB you can use SQLCipher, just [download/install](https://www.sqlite.org/index.html) SQLite
+
+
+Update 
+
+based on https://github.com/sp958857/SQLite4Unity
