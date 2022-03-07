@@ -12,7 +12,6 @@ public class InputFieldTabing : MonoBehaviour
 
     public int selectedIndex;
 
-    public bool valid = true;
 
     
     private void Start()

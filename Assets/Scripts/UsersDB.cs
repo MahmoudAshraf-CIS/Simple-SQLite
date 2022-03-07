@@ -19,7 +19,7 @@ using UnityEngine;
         public string Email { get; set; }
 
         public string FullName { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
 
         public System.DateTime Created { get; set; }
 
@@ -132,8 +132,8 @@ using UnityEngine;
                 Password = "mnnsPassword",
                 Email = "mnns@gmail.com",
                 FullName = "Mahmoud",
-                
-                Age = 26
+                Created = System.DateTime.Now,
+                Age = "26"
             } 
             });
             try
@@ -144,8 +144,8 @@ using UnityEngine;
                     Password = "mnnsPassword",
                     Email = "mnns@gmail.com",
                     FullName = "Mahmoud",
-                     
-                    Age = 26
+                    Created = System.DateTime.Now,
+                    Age = "26"
                 }
                 });
 
