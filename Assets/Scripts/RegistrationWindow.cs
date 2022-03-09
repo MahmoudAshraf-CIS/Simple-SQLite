@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using TMPro;
+using Scheme;
 
 namespace UserAuthentication
 {
@@ -23,7 +24,7 @@ namespace UserAuthentication
         UnityEvent OnRegistrationAttempt, OnRegistrationFaile, OnRegistrationSuccess;
 
 
-        public bool registerResult = true;
+        public bool registerResult = true, autoLogin = true;
 
         // Start is called before the first frame update
         void Start()
@@ -77,50 +78,7 @@ namespace UserAuthentication
         }
 
 
-        bool ValidInputs()
-        {
-
-            bool returnVal = true, temp;
-            // validate the inputs
-            mUserNameHint.SetActive(temp = !Validate(mUserName));
-            returnVal = returnVal && !temp;
-            Debug.Log("mUserName :" + returnVal);
-            mUserName.text = !temp ?
-                "" : mUserName.text;
-
-            mPasswordHint.SetActive(temp = !Validate(mPassword));
-            returnVal = returnVal && !temp;
-            Debug.Log("mPassword :" + returnVal);
-            mPassword.text = !temp ?
-                "" : mPassword.text;
-
-            mPasswordConfirmHint.SetActive(temp = (!Validate(mPasswordConfirm) && mPasswordConfirm.text == mPassword.text));
-            returnVal = returnVal && !temp;
-            Debug.Log("mPasswordConfirm :" + returnVal);
-            mPassword.text = !temp ?
-                "" : mPassword.text;
-
-            mEmailHint.SetActive(temp = !Validate(mEmail));
-            returnVal = returnVal && !temp;
-            Debug.Log("mEmail :" + returnVal);
-            mEmail.text = !temp ?
-                "" : mEmail.text;
-
-            mAgeHint.SetActive(temp = !Validate(mAge));
-            returnVal = returnVal && !temp;
-            Debug.Log("mAge :" + returnVal);
-            mAge.text = !temp ?
-                "" : mAge.text;
-
-            mFullNameHint.SetActive(temp = !Validate(mFullName));
-            returnVal = returnVal && !temp;
-            Debug.Log("mFullName :" + returnVal);
-            mFullName.text = !temp ?
-                "" : mFullName.text;
-
-            return returnVal;
-
-        }
+        
         void OnRegistrationAttemptAux()
         {
             mLoadingIndicator.SetActive(true);
@@ -147,7 +105,13 @@ namespace UserAuthentication
             mUserName.interactable = mPassword.interactable =
                 mPasswordConfirm.interactable = mEmail.interactable =
                 mAge.interactable = mFullName.interactable = true;
-
+            DialogWindow.Instance.EnableDialog("Rigestration Sucess", "Your account has been created successfully.", "OK");
+            if (autoLogin)
+            {
+                LoginWindow lw = GameObject.FindObjectOfType<LoginWindow>();
+                if (lw)
+                    lw.LogIn(mUserName.text, mPassword.text);
+            }
         }
         private IEnumerator AsyncToRegistr(string userName,
             string password,
@@ -198,7 +162,50 @@ namespace UserAuthentication
             return registerResult;
         }
 
+        bool ValidInputs()
+        {
 
+            bool returnVal = true, temp;
+            // validate the inputs
+            mUserNameHint.SetActive(temp = !Validate(mUserName));
+            returnVal = returnVal && !temp;
+            Debug.Log("mUserName :" + returnVal);
+            mUserName.text = temp ?
+                "" : mUserName.text;
+
+            mPasswordHint.SetActive(temp = !Validate(mPassword));
+            returnVal = returnVal && !temp;
+            Debug.Log("mPassword :" + returnVal);
+            mPassword.text = temp ?
+                "" : mPassword.text;
+
+            mPasswordConfirmHint.SetActive(temp = (!Validate(mPasswordConfirm) && mPasswordConfirm.text == mPassword.text));
+            returnVal = returnVal && !temp;
+            Debug.Log("mPasswordConfirm :" + returnVal);
+            mPassword.text = temp ?
+                "" : mPassword.text;
+
+            mEmailHint.SetActive(temp = !Validate(mEmail));
+            returnVal = returnVal && !temp;
+            Debug.Log("mEmail :" + returnVal);
+            mEmail.text = temp ?
+                "" : mEmail.text;
+
+            mAgeHint.SetActive(temp = !Validate(mAge));
+            returnVal = returnVal && !temp;
+            Debug.Log("mAge :" + returnVal);
+            mAge.text = temp ?
+                "" : mAge.text;
+
+            mFullNameHint.SetActive(temp = !Validate(mFullName));
+            returnVal = returnVal && !temp;
+            Debug.Log("mFullName :" + returnVal);
+            mFullName.text = temp ?
+                "" : mFullName.text;
+
+            return returnVal;
+
+        }
         public bool Validate(TMP_InputField i)
         {
             //Debug.Log("validating " + i.name + " ,text = " + i.text);

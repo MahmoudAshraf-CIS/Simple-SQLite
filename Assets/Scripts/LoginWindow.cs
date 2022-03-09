@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UserAuthentication;
 using TMPro;
+using Scheme;
+
 namespace UserAuthentication
 {
     public class LoginWindow : MonoBehaviour
@@ -22,9 +24,17 @@ namespace UserAuthentication
         [SerializeField]
         UnityEvent OnLoginAttempt, OnLoginFaile, OnLoginSuccess;
 
+        public enum LoadLevelOnLogin
+        {
+            none = -1,
+            Level0 = 0,
+            Level1 = 1,
+            Level2 = 2,
+        }
 
-        public bool loginResult = true;
+        public LoadLevelOnLogin levelToLoadOnLogin = LoadLevelOnLogin.none;
 
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -85,8 +95,14 @@ namespace UserAuthentication
             mLoadingIndicator.SetActive(false);
             mUserName.interactable = mPassword.interactable = true;
             DialogWindow.Instance.EnableDialog("Login Sucess !", 
-                "Now you are log", 
+                "Now you are loged in..", 
                 "OK");
+
+            if (levelToLoadOnLogin != LoadLevelOnLogin.none && 
+                UnityEngine.SceneManagement.SceneManager.sceneCount >= ((int)levelToLoadOnLogin))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(((int)levelToLoadOnLogin));
+            }
         }
         private IEnumerator AsyncToLogin(
             string userName,

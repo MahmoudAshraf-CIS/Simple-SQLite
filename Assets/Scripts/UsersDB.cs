@@ -2,59 +2,15 @@ using SQLite4Unity3d;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Scheme;
 
-
- namespace UserAuthentication
+namespace UserAuthentication
 {
+    
 
-
-    public class User
-    {
-
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        [Unique]
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-
-        public string FullName { get; set; }
-        public string Age { get; set; }
-
-        public System.DateTime Created { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("[Person: " +
-                "Id={0}, " +
-                "UserName ={1},  " +
-                "Password={2}, " +
-                "Email={3}, " +
-                "FirstName={4}, " +
-                "Surname={5}, " +
-                "Age={6}]"
-                , Id, UserName, Password, Email,FullName,Age);
-        }
-    }
-
-    public class Shot
-    {
-        public int PlayerId { get; set; }
-        public int Score { get; set; }
-        public float Distance { get; set; }
-        public override string ToString()
-        {
-            return string.Format("[Person: Id={0}, Score={1},  Distance={2}]", PlayerId, Score, Distance);
-        }
-
-    }
-
-    public class Gun
-    {
-        public string Name { get; set; }
-
-    }
-
+    
+    
+  
     /// <summary>
     /// Defines the <see cref="UsersDB" />.
     /// </summary>
@@ -128,10 +84,10 @@ using UnityEngine;
             //Debug.Log("Table of Student was created ");
             _connection.InsertAll(new[]{
             new User{
-                UserName = "mnns",
-                Password = "mnnsPassword",
-                Email = "mnns@gmail.com",
-                FullName = "Mahmoud",
+                UserName = "admin",
+                Password = "admin",
+                Email = "mahmoud.ashraf@umbrasys.com",
+                FullName = "Mahmoud Ashraf",
                 Created = System.DateTime.Now,
                 Age = "26"
             } 
@@ -140,10 +96,10 @@ using UnityEngine;
             {
                 int result = _connection.InsertAll(new[]{
                 new User{
-                    UserName = "mnns1",
-                    Password = "mnnsPassword",
-                    Email = "mnns@gmail.com",
-                    FullName = "Mahmoud",
+                    UserName = "Player",
+                    Password = "Player",
+                    Email = "mahmoud.ashraf.cis@gmail.com",
+                    FullName = "Mahmoud Ashraf (player)",
                     Created = System.DateTime.Now,
                     Age = "26"
                 }

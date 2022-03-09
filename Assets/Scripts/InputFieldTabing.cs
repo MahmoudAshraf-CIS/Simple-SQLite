@@ -3,61 +3,61 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
- 
- 
 
-public class InputFieldTabing : MonoBehaviour
+
+namespace UserAuthentication
 {
-    public TMP_InputField[] fields;
-
-    public int selectedIndex;
-
-
-    
-    private void Start()
+    public class InputFieldTabing : MonoBehaviour
     {
-        selectedIndex = 0;
-        fields[selectedIndex].Select();
-         
-    }
-    public void SomeFieldIsSelected(TMP_InputField selectedField)
-    {
-        for (int i = 0; i < fields.Length; i++)
+        public TMP_InputField[] fields;
+
+        public int selectedIndex;
+
+        private void Start()
         {
-            if (selectedField == fields[i])
+            selectedIndex = 0;
+            fields[selectedIndex].Select();
+        }
+
+        public void SomeFieldIsSelected(TMP_InputField selectedField)
+        {
+            for (int i = 0; i < fields.Length; i++)
             {
-                selectedIndex = i;
-                return;
+                if (selectedField == fields[i])
+                {
+                    selectedIndex = i;
+                    return;
+                }
             }
         }
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
 
-        if((Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Tab)) 
-            || 
-            (Input.GetKey(KeyCode.RightShift) && Input.GetKeyUp(KeyCode.Tab)))
+        // Update is called once per frame
+        void Update()
         {
-            selectedIndex--;
-            if (selectedIndex<0)
-                selectedIndex = fields.Length-1;
-            fields[selectedIndex].Select();
 
-        }
-        else if( Input.GetKeyUp(KeyCode.Tab))
-        {
-            selectedIndex++;
-            if (selectedIndex >= fields.Length)
-                selectedIndex = 0;
-            fields[selectedIndex].Select();
+            if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Tab))
+                ||
+                (Input.GetKey(KeyCode.RightShift) && Input.GetKeyUp(KeyCode.Tab)))
+            {
+                selectedIndex--;
+                if (selectedIndex < 0)
+                    selectedIndex = fields.Length - 1;
+                fields[selectedIndex].Select();
 
+            }
+            else if (Input.GetKeyUp(KeyCode.Tab))
+            {
+                selectedIndex++;
+                if (selectedIndex >= fields.Length)
+                    selectedIndex = 0;
+                fields[selectedIndex].Select();
+
+            }
         }
+
+
+
+
+
     }
-
-    
-    
- 
-
 }
