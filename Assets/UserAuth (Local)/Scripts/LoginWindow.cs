@@ -119,7 +119,10 @@ namespace UserAuthentication
             bool result = (usr != null && usr.Password == password) ;  
                         
             if (result && onSucess != null)
+            {
+                Session.Instance.SetUser(usr);
                 onSucess.Invoke();
+            }
             else if (!result && onFaile != null)
                 onFaile.Invoke();
 

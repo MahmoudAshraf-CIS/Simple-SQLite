@@ -21,6 +21,9 @@ namespace UserAuthentication
         /// </summary>
         private static SQLiteConnection _connection;
 
+        [SerializeField]
+        bool _clearDB = false;
+
         // Start is called before the first frame update
         /// <summary>
         /// The Start.
@@ -78,10 +81,28 @@ namespace UserAuthentication
             _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
             Debug.Log("Final PATH: " + dbPath);
 
+            if (_clearDB)
+            {
+                InitDB();
+            }
+
+
+        }
+
+        void InitDB()
+        {
 
             _connection.DropTable<User>();
             _connection.CreateTable<User>();
-            //Debug.Log("Table of Student was created ");
+
+            _connection.DropTable<Shot>();
+            _connection.CreateTable<Shot>();
+
+
+
+
+
+            
             _connection.InsertAll(new[]{
             new User{
                 UserName = "admin",
@@ -90,7 +111,7 @@ namespace UserAuthentication
                 FullName = "Mahmoud Ashraf",
                 Created = System.DateTime.Now,
                 Age = "26"
-            } 
+            }
             });
             try
             {
@@ -112,8 +133,7 @@ namespace UserAuthentication
                 Debug.Log(e.Message);
                 throw;
             }
-            //Debug.LogWarning("Table of Student was updated with the following");
-            //_connection.Table<User>();
+            
             var usersTable = _connection.Table<User>().ToList<User>();
             //foreach (var s in usersTable)
             //{
@@ -132,24 +152,20 @@ namespace UserAuthentication
 
 
             //Debug.LogWarning("Table of Shot was updated with the following");
-            _connection.DropTable<Shot>();
-            _connection.CreateTable<Shot>();
+            
             Shot mShot = new Shot();
             mShot.PlayerId = 1;
             mShot.Score = 4000;
             mShot.Distance = 10;
             _connection.Insert(mShot);
+
+
             mShot = new Shot();
             mShot.PlayerId = 1;
             mShot.Score = 500;
             mShot.Distance = 10;
             _connection.Insert(mShot);
-
-            //mShot = new Shot();
-            //mShot.Id = 4;
-            //mShot.Score = 300;
-            //mShot.Distance = 10;
-            //_connection.Insert(mShot);
+             
 
 
             var shotsTable = _connection.Table<Shot>().ToList<Shot>();
@@ -170,7 +186,6 @@ namespace UserAuthentication
             //foreach (var r in q)
             //{
             //    Debug.Log(r.ToString());
-
             //}
 
             var joinResult = from u in usersTable
@@ -180,7 +195,6 @@ namespace UserAuthentication
             //foreach (var r in joinResult)
             //{
             //    Debug.Log(r.ToString() + "[Score = " + r.Score + ", UserName = " + r.UserName + ", UserId + " + r.UserID);
-
             //}
 
             var joinResult2 = usersTable.AsEnumerable().Join(shotsTable.AsEnumerable(),
@@ -203,7 +217,6 @@ namespace UserAuthentication
             //        shot1 => shot1.Id, // outerKeySelector
             //        user1 => user1.Id, //innerKeySelector
             //        (shot1, user1) => new { OwnerName = shot1} //result selector
-
             //        );
 
 
@@ -211,21 +224,9 @@ namespace UserAuthentication
             //{
             //    Debug.Log(obj.OwnerName);
             //}
-
             //Debug.Log(innerJoin);
 
             //int i = 0;
-
-
-
-        }
-
-        // Update is called once per frame
-        /// <summary>
-        /// The Update.
-        /// </summary>
-        internal void Update()
-        {
 
         }
 

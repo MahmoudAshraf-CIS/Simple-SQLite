@@ -1819,7 +1819,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  levelToLoadOnLogin: 0
+  levelToLoadOnLogin: 1
 --- !u!1 &174369603
 GameObject:
   m_ObjectHideFlags: 0
@@ -24651,6 +24651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735695492}
   - component: {fileID: 1735695491}
+  - component: {fileID: 1735695494}
   - component: {fileID: 1735695493}
   m_Layer: 0
   m_Name: UserManagment
@@ -24671,6 +24672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe1b5cf6e533a54d90ed3fe2a848f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clearDB: 0
 --- !u!4 &1735695492
 Transform:
   m_ObjectHideFlags: 0
@@ -24697,6 +24699,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdcc89e964177f4db0b73f03e1da829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1735695494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735695490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a3c5d41f0db4a41ab0d76fdd3b49a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  User:
+    _id: 0
+    _UserName: 
+    _Password: 
+    _Email: 
+    _FullName: 
+    _Age: 
 --- !u!1 &1756309876
 GameObject:
   m_ObjectHideFlags: 0
